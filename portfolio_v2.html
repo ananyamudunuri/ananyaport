@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ananya Mudunuri — AI Full Stack Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@200;300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666;
+            --bg-light: #f8f8f8;
+            --border: #e5e5e5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ═══════ NAVIGATION ═══════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+
+        .nav-logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* ═══════ HERO SECTION ═══════ */
+        .hero {
+            margin-top: 80px;
+            padding: 80px 0 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .hero-content .subtitle {
+            font-size: 20px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* ═══════ ABOUT SECTION ═══════ */
+        .about {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 48px;
+            color: var(--text-primary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .about-text p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .skill-category h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .skill-category p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ═══════ EXPERIENCE SECTION ═══════ */
+        .experience {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .experience-item {
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -46px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .experience-item h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .experience-item .company {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .experience-item .duration {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .experience-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ═══════ EDUCATION SECTION ═══════ */
+        .education {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .education-card {
+            background: var(--bg-light);
+            padding: 32px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .education-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.1);
+        }
+
+        .education-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .education-card .degree {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .education-card .year {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* ═══════ PROJECTS SECTION ═══════ */
+        .projects {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
+        }
+
+        .project-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(99, 102, 241, 0.15);
+        }
+
+        .project-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .project-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tag {
+            font-size: 12px;
+            background: white;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--primary);
+        }
+
+        /* ═══════ CERTIFICATIONS ═══════ */
+        .certifications {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .cert-card {
+            background: var(--bg-light);
+            padding: 24px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .cert-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .badge-aws {
+            background: #ff9900;
+        }
+
+        .badge-gcp {
+            background: #4285f4;
+        }
+
+        .badge-sf {
+            background: #00a1e0;
+        }
+
+        .cert-card h4 {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .cert-card h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        /* ═══════ CONTACT SECTION ═══════ */
+        .contact {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .contact p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            font-size: 14px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--primary-dark);
+        }
+
+        /* ═══════ FOOTER ═══════ */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        /* ═══════ RESPONSIVE ═══════ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 60px 0 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline {
+                padding-left: 30px;
+            }
+
+            .experience-item::before {
+                left: -36px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <a href="#" class="nav-logo">A</a>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container" style="display: contents;">
+            <div class="hero-content">
+                <div>
+                    <h1>Ananya Mudunuri</h1>
+                    <p class="subtitle">AI Full Stack Software Engineer</p>
+                    <p>Building intelligent, scalable systems with machine learning and modern cloud architecture. Passionate about solving complex problems through elegant code and data-driven solutions.</p>
+                    <div class="hero-buttons">
+                        <a href="mailto:mudunuriananyav@gmail.com" class="btn btn-primary">Get in Touch</a>
+                        <a href="https://www.linkedin.com/in/ananya-m-610b583a7/" class="btn btn-secondary">View LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="photo-placeholder">Add your photo here</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a full-stack software engineer with a deep passion for building AI-powered applications that make a real impact. With experience spanning machine learning, backend development, and cloud infrastructure, I approach problems with a holistic mindset.</p>
+                    <p>Currently exploring the intersection of healthcare operations and AI, I've worked on projects ranging from algorithmic trading systems to cybersecurity solutions. I believe in writing clean, maintainable code and continuously learning new technologies.</p>
+                </div>
+                <div>
+                    <h3 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 24px;">Technical Stack</h3>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Languages</h4>
+                            <p>Python, JavaScript, TypeScript, SQL, Java</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>ML & AI</h4>
+                            <p>TensorFlow, PyTorch, scikit-learn, NLP, Computer Vision</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Backend</h4>
+                            <p>FastAPI, Node.js, Django, PostgreSQL, MongoDB</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Frontend</h4>
+                            <p>React, Vue.js, Next.js, Tailwind CSS</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Cloud & DevOps</h4>
+                            <p>AWS, GCP, Docker, Kubernetes, CI/CD</p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Tools</h4>
+                            <p>Git, GitHub, Jira, VS Code, Jupyter</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <h3>AI Full Stack Intern</h3>
+                    <p class="company">Stacklyon | Agentic AI for Healthcare Operations</p>
+                    <p class="duration">May 2026 - Present • 2 months</p>
+                    <p>Developing intelligent AI agents for healthcare operations, focusing on workflow automation and decision support systems. Building full-stack applications that integrate LLMs with medical data pipelines. Implementing real-time monitoring dashboards and optimizing prompt engineering for clinical accuracy.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>AI Software Engineer Intern</h3>
+                    <p class="company">MeridianSoft</p>
+                    <p class="duration">Aug 2025 - Mar 2026 • 8 months</p>
+                    <p>Engineered backend services for AI-powered analytics platform. Developed RESTful APIs using FastAPI, optimized database queries for 3M+ records, and implemented caching strategies. Collaborated with ML engineers to deploy model serving infrastructure and built monitoring systems for production models.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>AI Full Stack Engineer Intern</h3>
+                    <p class="company">World Market</p>
+                    <p class="duration">Sep 2023 - Sep 2024 • 1 year 1 month</p>
+                    <p>Built end-to-end solutions for e-commerce platforms using React and Node.js. Implemented ML-based product recommendation engine increasing click-through rates by 23%. Designed and deployed data pipelines for customer behavior analysis and integrated third-party APIs for payment processing.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Software Engineer</h3>
+                    <p class="company">Accenture</p>
+                    <p class="duration">May 2022 - Jul 2023 • 1 year 3 months</p>
+                    <p>Developed full-stack web applications for Fortune 500 clients. Led code reviews and mentored junior developers on best practices. Implemented microservices architecture, automated CI/CD pipelines, and reduced deployment time by 40%. Participated in Agile ceremonies and delivered features with zero critical bugs.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Software Engineer</h3>
+                    <p class="company">Megnity Technologies</p>
+                    <p class="duration">Aug 2020 - Apr 2022 • 1 year 9 months</p>
+                    <p>Built responsive web applications and APIs for SaaS platforms. Worked with legacy codebases and successfully refactored 50+ components using modern React patterns. Implemented unit and integration tests achieving 85% code coverage. Collaborated across teams to deliver features on aggressive timelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>San Jose State University</h3>
+                    <p class="degree">Master's Degree</p>
+                    <p class="year">Applied Data Science · 2023 - 2025</p>
+                </div>
+                <div class="education-card">
+                    <h3>San Jose State University</h3>
+                    <p class="degree">Bachelor's Degree</p>
+                    <p class="year">Computer Science · 2019 - 2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <a href="https://github.com/ananyamudunuri/ML-classification" target="_blank" class="project-card" style="text-decoration: none; color: inherit;">
+                    <h3>ML Classification Models</h3>
+                    <p>Comparative analysis of classification algorithms with hyperparameter optimization and ensemble methods achieving 94% accuracy.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">scikit-learn</span>
+                        <span class="project-tag">ML</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/ananyamudunuri/Cybersecurity-Intrusion-Detection-System" target="_blank" class="project-card" style="text-decoration: none; color: inherit;">
+                    <h3>Intrusion Detection System</h3>
+                    <p>Deep learning-based network security system using neural networks for real-time anomaly detection with 99.2% precision.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">TensorFlow</span>
+                        <span class="project-tag">Deep Learning</span>
+                        <span class="project-tag">Security</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/ananyamudunuri/Algorithmic-Trading-Strategy-Development" target="_blank" class="project-card" style="text-decoration: none; color: inherit;">
+                    <h3>Algorithmic Trading Platform</h3>
+                    <p>ML-driven trading strategies with backtesting engine, generating 18% annualized returns over 5-year period.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">ML</span>
+                        <span class="project-tag">Finance</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/ananyamudunuri/Commercial-building-Energy-Optimization-A-Machine-Learning-Approach--" target="_blank" class="project-card" style="text-decoration: none; color: inherit;">
+                    <h3>Energy Optimization System</h3>
+                    <p>Time-series ML models predicting building energy consumption, reducing operational costs by 22%.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Time Series</span>
+                        <span class="project-tag">GCP</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/ananyamudunuri/Music-Recommendation" target="_blank" class="project-card" style="text-decoration: none; color: inherit;">
+                    <h3>Music Recommendation Engine</h3>
+                    <p>Hybrid recommendation system combining content-based and collaborative filtering techniques for Spotify-like platform.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Pandas</span>
+                        <span class="project-tag">Recommenders</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/ananyamudunuri/My-Deep-learning-projects" target="_blank" class="project-card" style="text-decoration: none; color: inherit;">
+                    <h3>Deep Learning Suite</h3>
+                    <p>Collection of advanced DL projects including CNNs, GANs, Transformers, and LangChain-based NLP applications.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">PyTorch</span>
+                        <span class="project-tag">TensorFlow</span>
+                        <span class="project-tag">NLP</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS SECTION -->
+    <section class="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certs-grid">
+                <a href="https://www.credly.com/badges/354c23e5-1418-4694-9ab3-f23cfa6196e6/email" target="_blank" class="cert-card" style="text-decoration: none; color: inherit;">
+                    <div class="cert-badge badge-aws">AWS</div>
+                    <h4>Amazon Web Services</h4>
+                    <h3>Data Engineer Associate</h3>
+                </a>
+
+                <a href="https://www.credly.com/badges/de8971d4-cb7a-405d-b31c-61043da61559/public_url" target="_blank" class="cert-card" style="text-decoration: none; color: inherit;">
+                    <div class="cert-badge badge-gcp">GCP</div>
+                    <h4>Google Cloud</h4>
+                    <h3>Professional Data Engineer</h3>
+                </a>
+
+                <a href="https://www.credly.com/badges/8bae208b-de6f-49af-9eaf-d277e3c07470/public_url" target="_blank" class="cert-card" style="text-decoration: none; color: inherit;">
+                    <div class="cert-badge badge-aws">AWS</div>
+                    <h4>Amazon Web Services</h4>
+                    <h3>Academy Graduate</h3>
+                </a>
+
+                <a href="https://www.salesforce.com/trailblazer/ananyamudunuri" target="_blank" class="cert-card" style="text-decoration: none; color: inherit;">
+                    <div class="cert-badge badge-sf">SF</div>
+                    <h4>Salesforce</h4>
+                    <h3>Platform Administrator</h3>
+                </a>
+
+                <a href="https://www.salesforce.com/trailblazer/ananyamudunuri" target="_blank" class="cert-card" style="text-decoration: none; color: inherit;">
+                    <div class="cert-badge badge-sf">SF</div>
+                    <h4>Salesforce</h4>
+                    <h3>Agentforce Specialist</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p>I'm always interested in interesting projects and opportunities. Feel free to reach out!</p>
+            <div class="contact-links">
+                <a href="mailto:mudunuriananyav@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/ananya-m-610b583a7/" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/ananyamudunuri" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Ananya Mudunuri. Built with passion.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to nav
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 2px 12px rgba(0,0,0,0.05)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
